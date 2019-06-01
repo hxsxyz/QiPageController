@@ -59,7 +59,7 @@
 
 - (void)setupMenuViewMethod2 {
     
-    QiPageMenuView *menuView = [[QiPageMenuView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50) titles:@[@"系统消息",@"节日消息",@"广播通知"]];
+    QiPageMenuView *menuView = [[QiPageMenuView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50) titles:@[@"系统消息",@"节日消息",@"广播通知",@"修改能提交"]];
     menuView.backgroundColor = [UIColor orangeColor];
     //定制样式
     menuView.normalTitleColor = [UIColor blackColor];
