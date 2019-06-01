@@ -10,6 +10,11 @@
 
 @interface ViewController : UIViewController
 
+- (IBAction)QiPageMenuView:(id)sender;
+
+- (IBAction)QiPageViewController:(id)sender;
+
+- (IBAction)mix:(id)sender;
 
 @end
 

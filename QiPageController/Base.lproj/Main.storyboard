@@ -1,24 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dN5-II-EkC">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="c0x-1p-Xe3">
+            <objects>
+                <navigationController id="dN5-II-EkC" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Azl-uu-miZ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="VWC-iv-WYq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b9o-IA-okU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1359" y="-252"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yEx-Ab-2gg"/>
+                        <viewControllerLayoutGuide type="bottom" id="CMh-lo-ht7"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cmt-aO-j7d">
+                                <rect key="frame" x="144.5" y="228.5" width="86" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="86" id="VKW-TQ-ifs"/>
+                                </constraints>
+                                <state key="normal" title="QiMenuView"/>
+                                <connections>
+                                    <action selector="QiPageMenuView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Le-fI-ZeU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBf-FE-o2k">
+                                <rect key="frame" x="112.5" y="318.5" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="xsz-n4-Yhf"/>
+                                </constraints>
+                                <state key="normal" title="QiPageViewController"/>
+                                <connections>
+                                    <action selector="QiPageViewController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="88w-Ta-zPh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKy-N7-Tih">
+                                <rect key="frame" x="65" y="408.5" width="245" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="245" id="8Fc-iD-EAI"/>
+                                </constraints>
+                                <state key="normal" title="QiMenuView+QiPageViewController"/>
+                                <connections>
+                                    <action selector="mix:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bgL-Aa-Tbi"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <constraints>
+                            <constraint firstItem="iBf-FE-o2k" firstAttribute="top" secondItem="Cmt-aO-j7d" secondAttribute="bottom" constant="60" id="38W-yQ-hS3"/>
+                            <constraint firstItem="TKy-N7-Tih" firstAttribute="top" secondItem="iBf-FE-o2k" secondAttribute="bottom" constant="60" id="6BL-rk-UB4"/>
+                            <constraint firstItem="iBf-FE-o2k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AUz-9M-lf6"/>
+                            <constraint firstItem="iBf-FE-o2k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="F4h-6J-Gf6"/>
+                            <constraint firstItem="TKy-N7-Tih" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hk9-Sz-pI2"/>
+                            <constraint firstItem="iBf-FE-o2k" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mN3-ga-bUL"/>
+                            <constraint firstItem="Cmt-aO-j7d" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sev-HV-B6y"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="jfz-8c-8Ie"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-492" y="-252"/>
         </scene>
     </scenes>
 </document>

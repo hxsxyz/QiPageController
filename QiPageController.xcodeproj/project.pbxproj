@@ -15,6 +15,12 @@
 		114D00EA229AC825009F2EF7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 114D00E9229AC825009F2EF7 /* main.m */; };
 		114D00F4229AC825009F2EF7 /* QiPageControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 114D00F3229AC825009F2EF7 /* QiPageControllerTests.m */; };
 		114D00FF229AC825009F2EF7 /* QiPageControllerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 114D00FE229AC825009F2EF7 /* QiPageControllerUITests.m */; };
+		114D0111229AC893009F2EF7 /* QiPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114D010D229AC893009F2EF7 /* QiPageViewController.m */; };
+		114D0112229AC893009F2EF7 /* QiPageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 114D0110229AC893009F2EF7 /* QiPageMenuView.m */; };
+		114D0115229ACB6D009F2EF7 /* UIView+frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 114D0114229ACB6D009F2EF7 /* UIView+frame.m */; };
+		114D0118229ACFD8009F2EF7 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114D0117229ACFD8009F2EF7 /* MenuViewController.m */; };
+		114D011B229ACFF7009F2EF7 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114D011A229ACFF7009F2EF7 /* PageViewController.m */; };
+		114D011E229AD01E009F2EF7 /* PageMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114D011D229AD01E009F2EF7 /* PageMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +57,18 @@
 		114D00FA229AC825009F2EF7 /* QiPageControllerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QiPageControllerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		114D00FE229AC825009F2EF7 /* QiPageControllerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QiPageControllerUITests.m; sourceTree = "<group>"; };
 		114D0100229AC825009F2EF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		114D010D229AC893009F2EF7 /* QiPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiPageViewController.m; sourceTree = "<group>"; };
+		114D010E229AC893009F2EF7 /* QiPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiPageViewController.h; sourceTree = "<group>"; };
+		114D010F229AC893009F2EF7 /* QiPageMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiPageMenuView.h; sourceTree = "<group>"; };
+		114D0110229AC893009F2EF7 /* QiPageMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiPageMenuView.m; sourceTree = "<group>"; };
+		114D0113229ACB6D009F2EF7 /* UIView+frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+frame.h"; sourceTree = "<group>"; };
+		114D0114229ACB6D009F2EF7 /* UIView+frame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+frame.m"; sourceTree = "<group>"; };
+		114D0116229ACFD8009F2EF7 /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		114D0117229ACFD8009F2EF7 /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		114D0119229ACFF7009F2EF7 /* PageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
+		114D011A229ACFF7009F2EF7 /* PageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
+		114D011C229AD01E009F2EF7 /* PageMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageMenuViewController.h; sourceTree = "<group>"; };
+		114D011D229AD01E009F2EF7 /* PageMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +123,13 @@
 				114D00DB229AC823009F2EF7 /* AppDelegate.m */,
 				114D00DD229AC823009F2EF7 /* ViewController.h */,
 				114D00DE229AC823009F2EF7 /* ViewController.m */,
+				114D0116229ACFD8009F2EF7 /* MenuViewController.h */,
+				114D0117229ACFD8009F2EF7 /* MenuViewController.m */,
+				114D0119229ACFF7009F2EF7 /* PageViewController.h */,
+				114D011A229ACFF7009F2EF7 /* PageViewController.m */,
+				114D011C229AD01E009F2EF7 /* PageMenuViewController.h */,
+				114D011D229AD01E009F2EF7 /* PageMenuViewController.m */,
+				114D010C229AC865009F2EF7 /* QisharePageController */,
 				114D00E0229AC823009F2EF7 /* Main.storyboard */,
 				114D00E3229AC825009F2EF7 /* Assets.xcassets */,
 				114D00E5229AC825009F2EF7 /* LaunchScreen.storyboard */,
@@ -130,6 +155,19 @@
 				114D0100229AC825009F2EF7 /* Info.plist */,
 			);
 			path = QiPageControllerUITests;
+			sourceTree = "<group>";
+		};
+		114D010C229AC865009F2EF7 /* QisharePageController */ = {
+			isa = PBXGroup;
+			children = (
+				114D010F229AC893009F2EF7 /* QiPageMenuView.h */,
+				114D0110229AC893009F2EF7 /* QiPageMenuView.m */,
+				114D010E229AC893009F2EF7 /* QiPageViewController.h */,
+				114D010D229AC893009F2EF7 /* QiPageViewController.m */,
+				114D0113229ACB6D009F2EF7 /* UIView+frame.h */,
+				114D0114229ACB6D009F2EF7 /* UIView+frame.m */,
+			);
+			path = QisharePageController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +300,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114D0115229ACB6D009F2EF7 /* UIView+frame.m in Sources */,
 				114D00DF229AC823009F2EF7 /* ViewController.m in Sources */,
 				114D00EA229AC825009F2EF7 /* main.m in Sources */,
+				114D011B229ACFF7009F2EF7 /* PageViewController.m in Sources */,
+				114D011E229AD01E009F2EF7 /* PageMenuViewController.m in Sources */,
 				114D00DC229AC823009F2EF7 /* AppDelegate.m in Sources */,
+				114D0118229ACFD8009F2EF7 /* MenuViewController.m in Sources */,
+				114D0111229AC893009F2EF7 /* QiPageViewController.m in Sources */,
+				114D0112229AC893009F2EF7 /* QiPageMenuView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
