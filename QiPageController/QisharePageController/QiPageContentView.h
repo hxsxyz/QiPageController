@@ -7,11 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QiPageProtocol.h"
+
 NS_ASSUME_NONNULL_BEGIN
+
+@protocol QiPageContentViewDelegate <NSObject>
+
+/**
+ 滑动完成回调
+ 
+ @param index 滑动至index
+ */
+- (void)pageContentViewDidScrollToIndex:(NSInteger)index beforeIndex:(NSInteger)beforeIndex;
+
+
+@end
 
 @interface QiPageContentView : UIView<UIPageViewControllerDelegate, UIPageViewControllerDataSource,UIScrollViewDelegate>
 
+@property (nonatomic, strong) UIPageViewController *pageViewController;
+@property (nonatomic, strong) NSArray *controllerArray; //!< 控制器数组
 /**
  滑动结束:block回调
  */
@@ -21,11 +35,6 @@ NS_ASSUME_NONNULL_BEGIN
  滑动结束:代理回调 若实现block代理不会走
  */
 @property (nonatomic, weak) id<QiPageContentViewDelegate> contentViewDelgate;
-
-@property (nonatomic,strong)UIPageViewController *pageViewController;
-@property (nonatomic, strong) NSArray *controllerArray; //!< 控制器数组
-
-@property (nonatomic, assign) NSInteger contenShouldScrollToIndex;
 
 /**
  设置滑动至某一个c控制器
@@ -43,8 +52,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return 实例
  */
 - (instancetype)initWithFrame:(CGRect)frame childViewController:(NSArray*)childViewControllers;
-
-
 
 @end
 

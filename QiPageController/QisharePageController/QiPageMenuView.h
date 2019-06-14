@@ -5,9 +5,7 @@
 //  Created by qinwanli on 2019/5/26.
 //  Copyright © 2019 360. All rights reserved.
 //
-
-
-#import "QiPageProtocol.h"
+#import <UIKit/UIKit.h>
 
 @class QiPageItem;
 
@@ -34,6 +32,17 @@ static QiPageMenuViewDataSourceKey const QiPageMenuViewItemTitlePadding = @"QiPa
 static QiPageMenuViewDataSourceKey const QiPageMenuViewLineTopPadding = @"QiPageMenuViewLineTopPadding";
 static QiPageMenuViewDataSourceKey const QiPageMenuViewLineHeight = @"QiPageMenuViewLineHeight";
 static QiPageMenuViewDataSourceKey const QiPageMenuViewLineWidth = @"QiPageMenuViewLineWidth";
+
+@protocol QiPageMenuViewDelegate <NSObject>
+
+/**
+ 菜单点击了某个item
+ 
+ @param index 点击了index
+ */
+- (void)pageMenuViewDidClickedIndex:(NSInteger)index beforeIndex:(NSInteger)beforeIndex;
+
+@end
 
 @interface QiPageMenuView : UIScrollView
 /**
