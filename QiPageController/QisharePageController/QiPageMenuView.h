@@ -6,13 +6,14 @@
 //  Copyright © 2019 360. All rights reserved.
 //
 
-#import "QiPageViewController.h"
+
+#import "QiPageProtocol.h"
 
 @class QiPageItem;
 
 typedef NSString * QiPageMenuViewDataSourceKey NS_EXTENSIBLE_STRING_ENUM;
+
 typedef CGFloat(^QiPageMenuViewDataSource)(void);
-typedef BOOL(^QiPageMenuViewBoolDataSource)(void);
 
 //dasource对应的各项属性
 static QiPageMenuViewDataSourceKey const QiPageMenuViewLeftMargin = @"QiPageMenuViewLeftMargin";//!<左间距 @(10)
@@ -34,11 +35,16 @@ static QiPageMenuViewDataSourceKey const QiPageMenuViewLineTopPadding = @"QiPage
 static QiPageMenuViewDataSourceKey const QiPageMenuViewLineHeight = @"QiPageMenuViewLineHeight";
 static QiPageMenuViewDataSourceKey const QiPageMenuViewLineWidth = @"QiPageMenuViewLineWidth";
 
-@interface QiPageMenuView : UIScrollView<QiPageControllerDelegate>
+@interface QiPageMenuView : UIScrollView
 /**
- 菜单栏点击事件
+ 菜单栏点击事件:block回调
  */
-@property (nonatomic,copy)void(^pageItemClicked)(NSInteger clickedIndex,QiPageMenuView *menu);
+@property (nonatomic,copy)void(^pageItemClicked)(NSInteger clickedIndex,NSInteger beforeIndex,QiPageMenuView *menu);
+
+/**
+ 菜单栏点击事件:代理回调 若实现block代理不会走
+ */
+@property (nonatomic, weak) id<QiPageMenuViewDelegate> menuViewDelgate;
 /**
  常态item的字体颜色
  */

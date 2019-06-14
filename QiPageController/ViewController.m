@@ -8,9 +8,8 @@
 
 #import "ViewController.h"
 #import "PageViewController.h"
-#import "PageMenuViewController.h"
 #import "MenuViewController.h"
-
+#import "PageMenuAndContentController.h"
 
 @interface ViewController ()
 
@@ -43,10 +42,9 @@
 }
 
 - (IBAction)mix:(id)sender {
-    
-    PageMenuViewController *page = [[PageMenuViewController alloc]init];
-    self.navigationItem.title = @"QiMenuView+QiPageViewController";
+    PageMenuAndContentController *page = [[PageMenuAndContentController alloc]init];
+    self.navigationItem.title = @"QiMenuView+QiPageContentView";
     [self.navigationController pushViewController:page animated:YES];
-    
 }
+
 @end

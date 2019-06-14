@@ -39,14 +39,14 @@
         _leftMargin   =  dataSource[QiPageMenuViewLeftMargin]?[dataSource[QiPageMenuViewLeftMargin] floatValue]:10.0;
         _rightMargin  =  dataSource[QiPageMenuViewRightMargin]?[dataSource[QiPageMenuViewRightMargin] floatValue]:10.0;
         _itemSpace    =  dataSource[QiPageMenuViewItemPadding]?[dataSource[QiPageMenuViewItemPadding] floatValue]:10.0;
-        //        需要固定宽时 此项必须赋值
+        //需要固定宽时 此项必须赋值
         _itemWidth    =  dataSource[QiPageMenuViewItemWidth]?[dataSource[QiPageMenuViewItemWidth] floatValue]:0;
         _itemHeight   =  dataSource[QiPageMenuViewItemHeight]?[dataSource[QiPageMenuViewItemHeight] floatValue]:30;
         
         _itemTitlePadding = dataSource[QiPageMenuViewItemTitlePadding]?[dataSource[QiPageMenuViewItemTitlePadding] floatValue]:10;
         _itemsAutoResizing = dataSource[QiPageMenuViewItemsAutoResizing]!=nil?[dataSource[QiPageMenuViewItemsAutoResizing] boolValue]:YES;
         _itemIsVerticalCentred = dataSource[QiPageMenuViewItemIsVerticalCentred]!=nil?[dataSource[QiPageMenuViewItemIsVerticalCentred] boolValue]:YES;
-        //        _itemTopPadding 初始值10，需要根据实际情况计算得到
+        // _itemTopPadding 初始值10，需要根据实际情况计算得到
         _itemTopPadding = dataSource[QiPageMenuViewItemTopPadding]?[dataSource[QiPageMenuViewItemTopPadding] floatValue]:10;
         _hasUnderLine =   dataSource[QiPageMenuViewHasUnderLine]!=nil?[dataSource[QiPageMenuViewHasUnderLine] boolValue]:YES;
         _lineColor = dataSource[QiPageMenuViewLineColor]?dataSource[QiPageMenuViewLineColor]:[UIColor colorWithRed:12.0/255.0 green:216.0/255 blue:98.0/255.0 alpha:1];
@@ -83,7 +83,7 @@
             orignal_x = CGRectGetMaxX(beforeItem.frame)+itemSpace;
         }
         QiPageItem *pageItem = self.itemsArray[i];
-        pageItem.frame = CGRectMake(orignal_x, itemIsVeticalCentred?(self.frame.size.height-itemHeight)/2:_itemTopPadding, itemWidth, itemHeight);
+        pageItem.frame = CGRectMake(orignal_x, itemIsVeticalCentred?(self.frame.size.height-itemHeight)/2 : _itemTopPadding, itemWidth, itemHeight);
         pageItem.autoResizing = itemsAutoResizing;//根据字数确定宽度，需要根据实际情况确定一个label到item两边的间距；
         //pageItem.padding = 10;//default 10
         pageItem.title = self.itemTitles[i];
@@ -125,31 +125,22 @@
         //不能只考虑item会垂直居中的情况，有时候可能需要Item向下偏移，so 要改
         QiPageItem *pageItem =
         [[QiPageItem alloc]initWithFrame:CGRectMake(orignal_x, itemIsVeticalCentred?(self.frame.size.height-itemHeight)/2:_itemTopPadding, itemWidth, itemHeight) widthAutoResizing:itemsAutoResizing title:self.itemTitles[i] padding:_itemTitlePadding clicked:^(UIButton *button) {
-
+            
+            NSInteger scrollIndex = [weakSelf.itemsTempArray indexOfObject:(QiPageItem*)button.superview];
+            //滑动方向需要beforeIndex
+            NSInteger beforeIndex = weakSelf.pageScrolledIndex;
+            self.pageScrolledIndex = scrollIndex;
             if (weakSelf.pageItemClicked) {
                 //调用之处设置了pageScrollIndex
-                weakSelf.pageItemClicked([weakSelf.itemsTempArray indexOfObject:(QiPageItem*)button.superview],weakSelf);
+                weakSelf.pageItemClicked(scrollIndex,beforeIndex,weakSelf);
             }else{
-                [self.itemsTempArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    QiPageItem *pageObj = (QiPageItem*)obj;
-                    if (button.superview!=pageObj&&pageObj.selected) {
-                        pageObj.selected = NO;
-                        //根据字体大小 需要重新计算frame button sizeToFit 只依据 normal下才能正确计算 所以在选中时需要同步改变下normal下的titleFont 算出正确的大小 再进行还原
-                        if (weakSelf.itemsAutoResizing){
-                            NSAttributedString *normaltitle = [[NSAttributedString alloc]initWithString:pageObj.title attributes:@{NSForegroundColorAttributeName:weakSelf.normalTitleColor,NSFontAttributeName:weakSelf.titleFont}];
-                            [pageObj.button setAttributedTitle:normaltitle forState:UIControlStateNormal];
-                            [pageObj.button sizeToFit];
-                            [pageObj layoutIfNeeded];
-                            
-                        }
-                    }
-                }];
-                //点击事件
-                [weakSelf scrollToPageItem:(QiPageItem*)button.superview];
+                
+                if ([weakSelf.menuViewDelgate respondsToSelector:@selector(pageMenuViewDidClickedIndex:beforeIndex:)]) {
+                    [weakSelf.menuViewDelgate pageMenuViewDidClickedIndex:[weakSelf.itemsTempArray indexOfObject:(QiPageItem*)button.superview]beforeIndex:beforeIndex];
+                }
             }
-            
-            
         }];
+        
         pageItem.selected = (i==0);
         [self addSubview:pageItem];
         [self refreshUnderLineViewPosition:pageItem];
@@ -167,7 +158,7 @@
             [self addSubview:self.underLineView];
         }
         if (pageItem.selected) {
-            self.underLineView.width = self.lineWitdh == pageItem.width ? pageItem.width :self.lineWitdh;
+            self.underLineView.width =  self.lineWitdh;
             self.underLineView.height = _lineHeight;
             self.underLineView.layer.cornerRadius = _lineHeight/2;
             self.underLineView.top = _itemIsVerticalCentred ? (self.height - _lineHeight) : (CGRectGetMaxY(pageItem.frame) + _lineTopPadding);
@@ -202,7 +193,7 @@
     CGFloat realMidX = CGRectGetMinX(originalRect)+CGRectGetWidth(originalRect)/2;
     if (CGRectGetMidX(convertRect) < CGRectGetMidX(self.frame)) {
         //是否需要右滑
-        if (realMidX> CGRectGetMidX(self.frame)) {
+        if (realMidX > CGRectGetMidX(self.frame)) {
             targetX = realMidX-CGRectGetMidX(self.frame);
         }else
         {
@@ -220,7 +211,6 @@
             targetX = self.contentSize.width - CGRectGetMaxX(self.frame);
         }
         [self setContentOffset:CGPointMake(targetX, 0) animated:YES];
-        
     }
     
 }
@@ -239,41 +229,6 @@
     
 }
 
-#pragma mark - QiPageControllerDelegate
-- (void)menuViewAssociatedQiPageController:(QiPageViewController *)customePage
-{
-    //获取一下这个pagecontroller
-    __weak typeof(customePage) weakPage = customePage;
-    self.pageItemClicked = ^(NSInteger clickedIndex,QiPageMenuView *menu) {
-        //翻页顺序控制
-        NSInteger currentIndex = menu.pageScrolledIndex;
-        if (currentIndex < clickedIndex) {
-            menu.pageScrolledIndex = clickedIndex;
-            [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[clickedIndex]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished) {
-                if (finished) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[clickedIndex]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-                    });
-                    
-                }
-            }];
-        }else{
-            menu.pageScrolledIndex = clickedIndex;
-            [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[clickedIndex]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL finished) {
-                if (finished) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[clickedIndex]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
-                    });
-                    
-                }
-            }];
-        }
-    };
-}
-- (void)menuViewShouldScrollIndex:(NSInteger)index PageController:(UIPageViewController *)pagecontroller
-{
-    self.pageScrolledIndex = index;
-}
 #pragma mark - setter
 - (void)setHasUnderLine:(BOOL)hasUnderLine
 {
@@ -418,12 +373,18 @@
     
 }
 #pragma mark - getter
+
 - (UIView*)underLineView{
     if (!_underLineView) {
         _underLineView = [[UIView alloc]initWithFrame:CGRectZero];
         _underLineView.backgroundColor = _lineColor;
     }
     return _underLineView;
+}
+
+- (void)dealloc
+{
+    NSLog(@"%@🔥🔥🔥🔥🔥🔥",NSStringFromClass(self.class));
 }
 
 @end
@@ -460,7 +421,6 @@
         });
         [self addSubview:self.button];
         self.buttonWidth = self.button.width;
-        [self layoutIfNeeded];
         
     }
     return self;
@@ -586,4 +546,5 @@
     self.button.selected = _selected;
     
 }
+
 @end

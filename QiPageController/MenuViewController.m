@@ -9,7 +9,6 @@
 #import "MenuViewController.h"
 #import "UIView+frame.h"
 #import "QiPageMenuView.h"
-
 @interface MenuViewController ()
 
 @end
@@ -24,6 +23,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self setupMenuViewMethod1];
     
+    
    
     // Do any additional setup after loading the view.
 }
@@ -35,15 +35,15 @@
                                  QiPageMenuViewNormalTitleColor : [UIColor blackColor],
                                  QiPageMenuViewSelectedTitleColor : [UIColor redColor],
                                  QiPageMenuViewTitleFont : [UIFont systemFontOfSize:14],
-                                 QiPageMenuViewSelectedTitleFont : [UIFont systemFontOfSize:14],
+                                 QiPageMenuViewSelectedTitleFont : [UIFont systemFontOfSize:16],
                                  QiPageMenuViewItemIsVerticalCentred : @(YES),
-                                 QiPageMenuViewItemTitlePadding : @(10.0),
+                                 QiPageMenuViewItemTitlePadding : @(20.0),
                                  QiPageMenuViewItemTopPadding : @(20.0),
                                  QiPageMenuViewItemPadding : @(10.0),
                                  QiPageMenuViewLeftMargin : @(20.0),
                                  QiPageMenuViewRightMargin : @(20.0),
+                                 QiPageMenuViewItemWidth : @(120.0),
                                  QiPageMenuViewItemsAutoResizing : @(YES),
-                                 QiPageMenuViewItemWidth : @(90.0),
                                  QiPageMenuViewItemHeight : @(40.0),
                                  QiPageMenuViewHasUnderLine :@(YES),
                                  QiPageMenuViewLineColor : [UIColor greenColor],
@@ -52,9 +52,10 @@
                                  QiPageMenuViewLineTopPadding : @(10.0)
                                  };
     
-    QiPageMenuView *menuView = [[QiPageMenuView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50) titles:@[@"系统消息",@"节日消息",@"广播通知"] dataSource:dataSource];
+    QiPageMenuView *menuView = [[QiPageMenuView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50) titles:@[@"系统消息",@"节日息",@"广播",@"系统消息",@"节日消息",@"广播通知",@"系统消息",@"节日消息",@"广播通知"] dataSource:dataSource];
     menuView.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:menuView];
+
 }
 
 - (void)setupMenuViewMethod2 {
@@ -98,5 +99,8 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (void)dealloc
+{
+    NSLog(@"🐯🐯🐯🐯🐯🐯🐯🐯🐯🐯🐯");
+}
 @end

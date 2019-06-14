@@ -6,11 +6,11 @@
 //  Copyright © 2019 qishare. All rights reserved.
 //
 
-#import "QiPageViewController.h"
+#import "QiPageContentView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PageViewController : QiPageViewController
+@interface PageViewController : UIViewController
 
 @end
 
