@@ -57,12 +57,13 @@
                     
                 } else {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+                        [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
                     });
                 }
  
             }
         }];
+        
     }else{
         [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:^(BOOL finished) {
             if (finished) {
@@ -71,7 +72,7 @@
                     
                 } else {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+                        [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
                     });
                 }
             }
