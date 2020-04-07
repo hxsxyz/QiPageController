@@ -36,14 +36,14 @@
                                  QiPageMenuViewNormalTitleColor : [UIColor blackColor],
                                  QiPageMenuViewSelectedTitleColor : [UIColor redColor],
                                  QiPageMenuViewTitleFont : [UIFont systemFontOfSize:14],
-                                 QiPageMenuViewSelectedTitleFont : [UIFont systemFontOfSize:16],
+                                 QiPageMenuViewSelectedTitleFont : [UIFont systemFontOfSize:18],
                                  QiPageMenuViewItemIsVerticalCentred : @(YES),
                                  QiPageMenuViewItemTitlePadding : @(10.0),
                                  QiPageMenuViewItemTopPadding : @(10.0),
                                  QiPageMenuViewItemPadding : @(10.0),
                                  QiPageMenuViewLeftMargin : @(20.0),
                                  QiPageMenuViewRightMargin : @(20.0),
-                                 QiPageMenuViewItemWidth : @(120.0),
+                                 QiPageMenuViewItemWidth : @(0.0),
                                  QiPageMenuViewItemsAutoResizing : @(YES),
                                  QiPageMenuViewItemHeight : @(40.0),
                                  QiPageMenuViewHasUnderLine :@(YES),
@@ -66,12 +66,17 @@
     
     UIViewController *ctrl4 = [UIViewController new];
     ctrl4.view.backgroundColor = [UIColor greenColor];
+    UIViewController *ctrl5 = [UIViewController new];
+    ctrl3.view.backgroundColor = [UIColor redColor];
     
-    QiPageMenuView *menuView = [[QiPageMenuView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50) titles:@[@"系统消息",@"节日消息",@"广播通知",@"最新",@"最热"] dataSource:dataSource];
+    UIViewController *ctrl6 = [UIViewController new];
+    ctrl4.view.backgroundColor = [UIColor greenColor];
+    
+    QiPageMenuView *menuView = [[QiPageMenuView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50) titles:@[@"系统消息",@"节日消息",@"广播通知",@"最新",@"最热",@"你好",@"你好呀"] dataSource:dataSource];
     menuView.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:menuView];
     
-    QiPageContentView *contenView = [[QiPageContentView alloc]initWithFrame:CGRectMake(0, menuView.bottom+10, self.view.width, self.view.height - menuView.bottom - 10 - 88-10) childViewController:@[ctrl,ctrl1,ctrl2,ctrl3,ctrl4]];
+    QiPageContentView *contenView = [[QiPageContentView alloc]initWithFrame:CGRectMake(0, menuView.bottom+10, self.view.width, self.view.height - menuView.bottom - 10 - 88-10) childViewController:@[ctrl,ctrl1,ctrl2,ctrl3,ctrl4,ctrl5,ctrl6]];
     [self.view addSubview:contenView];
     
     menuView.pageItemClicked = ^(NSInteger clickedIndex, NSInteger beforeIndex, QiPageMenuView *menu) {

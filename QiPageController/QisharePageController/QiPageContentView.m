@@ -49,23 +49,31 @@
     __weak typeof(self) weakPage = self;
     //翻页顺序控制
     if (beforeIndex < index) {
-        [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished) {
+        
+        [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished) {
             if (finished) {
                 weakPage.beforeIndex = index;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-                });
-                
+                if (@available(iOS 13.0, *)) {
+                    
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+                    });
+                }
+ 
             }
         }];
     }else{
-        [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL finished) {
+        [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:^(BOOL finished) {
             if (finished) {
-                 weakPage.beforeIndex = index;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
-                });
-                
+                weakPage.beforeIndex = index;
+                if (@available(iOS 13.0, *)) {
+                    
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakPage.pageViewController setViewControllers:@[weakPage.controllerArray[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+                    });
+                }
             }
         }];
     }
@@ -145,8 +153,8 @@
     /*scrollView.contentOffset.x起始点并不是0，向右：是从控件的宽开始 到宽*2结束  向左：控件的宽->0
      因此会得到一个滑动的百分比。
      */
-//    float trasitionProgress = (scrollView.contentOffset.x - self.width)/self.width;
-//    NSLog(@"%.2f",trasitionProgress);
+    float trasitionProgress = (scrollView.contentOffset.x - self.width)/self.width;
+    NSLog(@"%.2f",trasitionProgress);
 }
 
 #pragma mark - Getter

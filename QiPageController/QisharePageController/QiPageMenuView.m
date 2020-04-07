@@ -188,10 +188,9 @@
     }
     
     CGRect originalRect = pageItem.frame;
-    CGRect convertRect = [self convertRect:originalRect toView:self.superview];
     CGFloat targetX;
     CGFloat realMidX = CGRectGetMinX(originalRect)+CGRectGetWidth(originalRect)/2;
-    if (CGRectGetMidX(convertRect) < CGRectGetMidX(self.frame)) {
+    if (CGRectGetMidX(originalRect) < CGRectGetMidX(self.frame)) {
         //是否需要右滑
         if (realMidX > CGRectGetMidX(self.frame)) {
             targetX = realMidX-CGRectGetMidX(self.frame);
@@ -201,7 +200,7 @@
         }
         [self setContentOffset:CGPointMake(targetX, 0) animated:YES];
         
-    }else if(CGRectGetMidX(convertRect) > CGRectGetMidX(self.frame))
+    }else if(CGRectGetMidX(originalRect) > CGRectGetMidX(self.frame))
     {
         if (realMidX+CGRectGetMidX(self.frame)<self.contentSize.width) {
             targetX = realMidX-CGRectGetMidX(self.frame);
@@ -392,7 +391,7 @@
 
 @interface QiPageItem ()
 
-@property (nonatomic,assign)CGFloat buttonWidth;
+//@property (nonatomic,assign)CGFloat buttonWidth;
 
 @property (nonatomic, copy)void (^itemClicked) (UIButton *button);
 
@@ -420,7 +419,7 @@
             btn;
         });
         [self addSubview:self.button];
-        self.buttonWidth = self.button.width;
+//        self.buttonWidth = self.button.width;
         
     }
     return self;
@@ -467,7 +466,7 @@
         NSAttributedString *normaltitle = [[NSAttributedString alloc]initWithString:_title attributes:@{NSForegroundColorAttributeName:_normalTitleColor,NSFontAttributeName:_selectedTitleFont}];
         [self.button setAttributedTitle:normaltitle forState:UIControlStateNormal];
         [self.button sizeToFit];
-        self.buttonWidth = self.button.width;
+//        self.buttonWidth = self.button.width;
         [self layoutIfNeeded];
         NSAttributedString *renormaltitle = [[NSAttributedString alloc]initWithString:_title attributes:@{NSForegroundColorAttributeName:_normalTitleColor,NSFontAttributeName:_titleFont}];
         [self.button setAttributedTitle:renormaltitle forState:UIControlStateNormal];
@@ -493,7 +492,7 @@
         NSAttributedString *selectedtitle = [[NSAttributedString alloc]initWithString:_title attributes:@{NSForegroundColorAttributeName:_selectedTitleColor,NSFontAttributeName:_selectedTitleFont}];
         [self.button setAttributedTitle:selectedtitle forState:UIControlStateSelected];
         [self.button sizeToFit];
-        self.buttonWidth = self.button.width;
+//        self.buttonWidth = self.button.width;
         //需要更新布局
         [self layoutIfNeeded];
     }
@@ -505,7 +504,7 @@
         NSAttributedString *normaltitle = [[NSAttributedString alloc]initWithString:_title attributes:@{NSForegroundColorAttributeName:_normalTitleColor,NSFontAttributeName:_titleFont}];
         [self.button setAttributedTitle:normaltitle forState:UIControlStateNormal];
         [self.button sizeToFit];
-        self.buttonWidth = self.button.width;
+//        self.buttonWidth = self.button.width;
         //需要更新布局
         [self layoutIfNeeded];
     }
@@ -517,7 +516,7 @@
         NSAttributedString *selectedtitle = [[NSAttributedString alloc]initWithString:_title attributes:@{NSForegroundColorAttributeName:_selectedTitleColor,NSFontAttributeName:_selectedTitleFont}];
         [self.button setAttributedTitle:selectedtitle forState:UIControlStateSelected];
         [self.button sizeToFit];
-        self.buttonWidth = self.button.width;
+//        self.buttonWidth = self.button.width;
         //需要更新布局
         if (_autoResizing) {
             [self layoutIfNeeded];
